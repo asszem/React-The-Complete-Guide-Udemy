@@ -1,0 +1,21 @@
+.FunctionalComponent {
+  width: 60%;
+  border: 5px solid darkgrey;
+  background-color:grey;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin: 20px auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ClassBasedComponent {
+  width: 60%;
+  border: 5px solid darkgrey;
+  background-color:darkorchid;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin: 20px auto;
+  text-align: center;
+  cursor:progress;
+}

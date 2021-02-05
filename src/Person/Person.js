@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// the css needs to be imported and will be injected dynamicall by webpack to final html's head section between <style> tags
+import './Person.css';
 
 //Functional components (also referred to as "presentational", "dumb" or "stateless" components
 
@@ -18,7 +20,7 @@ const person = (props) => {
 };
 
 //Each component needs to return/ render some JSX code - it defines which HTML code React should render to the real DOM in the end.
-export class PersonAsClassBasedComponent extends Component {
+export class PersonClassBasedComponent extends Component {
   render() {
     return (
       <div className="ClassBasedComponent">
