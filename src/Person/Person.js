@@ -9,8 +9,8 @@ const person = (props) => {
   return (
     <div className="FunctionalComponent">
       <p>
-        Name={props.name}, age={props.age}, random number=
-        {Math.floor(Math.random() * 30)}, something undefined={props.blabla}
+        Name={props.name}, age={props.age}, rando=
+        {Math.floor(Math.random() * 30)}
       </p>
        <p>{props.children}</p> 
     </div>
