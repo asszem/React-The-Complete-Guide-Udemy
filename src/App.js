@@ -10,15 +10,16 @@ class App extends Component {
   //state is a reserved word in class that extends Component and can be used for useState() method
   state = {
     persons: [
-      { name: 'Andras', age: 11 },
-      { name: 'Tibor', age: 22 },
-      { name: 'Klara', age: 33 },
+      { name: 'Func1 ', age: 11 },
+      { name: 'Func2 ', age: 22 },
+      { name: 'Func3 ', age: 33 },
+      { name: 'Class ', age: 44 },
     ],
     otherKey: 'otherValue',
   };
 
   //...Handler is a convention to indicate that this method is not actively called, but assigned to an event handler
-  changeNameHandler = () => {
+  changeNameHandler = (newName) => {
     console.log('Change name button was clicked');
 
     // Do not mutate state directly. Use setState()  react/no-direct-mutation-state
@@ -36,9 +37,10 @@ class App extends Component {
     // setState is only available in Class based components. In Functional based components use useState()
     this.setState({
       persons: [
-        { name: 'Andras', age: rando() },
-        { name: 'Tibor', age: rando() },
-        { name: 'Klara', age: rando() },
+        { name: 'Func1 ' + newName, age: rando() },
+        { name: 'Func2 ' + newName, age: rando() },
+        { name: 'Func3 ' + newName, age: rando() },
+        { name: 'Class ' + newName, age: rando() },
       ],
     });
     // this.setState({ // curly bracket needed because the parameter must be an object
@@ -57,21 +59,40 @@ class App extends Component {
         <button onClick={this.changeNameHandler}>Change name</button>
         <p>This is a paragraph inside of main div</p>
         <PersonButCanBeAnything
+          // passing a METHOD as a property to a stateless component
+          clickMethod={this.changeNameHandler}
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
         />
         <PersonButCanBeAnything
+          // providing an argument for the passed method
+          clickMethod={this.changeNameHandler.bind(
+            this,
+            'new Argument with .bind'
+          )}
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
         />
         <PersonButCanBeAnything
+          // another way of providing an argument of the passed method
+          clickMethod={() =>
+            this.changeNameHandler('new Argument with arrow function')
+          }
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
+        />
+        <PersonButCanBeAnything
+          // not providing any argument
+          clickMethod={this.changeNameHandler}
         >
-          This is inside third person.
+          This person does not have name and age attributes when called from App
         </PersonButCanBeAnything>
 
-        <Pacbc name="Pacb" age="00">
+        <Pacbc
+          name={this.state.persons[3].name}
+          age={this.state.persons[3].age}
+          clickMethodPassedNameCanBeAnything={this.changeNameHandler.bind(this, 'new Argument from Class based component')}
+        >
           This is inside Pacbc element
         </Pacbc>
       </div>

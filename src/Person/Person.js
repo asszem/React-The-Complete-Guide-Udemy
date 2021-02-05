@@ -8,11 +8,11 @@ const person = (props) => {
   // this is a JSX syntax, we need to import React
   return (
     <div className="FunctionalComponent">
-      <p>
+      <p onClick={props.clickMethod}>
         Name={props.name}, age={props.age}, rando=
         {Math.floor(Math.random() * 30)}
       </p>
-       <p>{props.children}</p> 
+      <p>{props.children}</p>
     </div>
   );
 };
@@ -22,9 +22,12 @@ export class PersonAsClassBasedComponent extends Component {
   render() {
     return (
       <div className="ClassBasedComponent">
-          {/* This is a comment inside a JSX */}
+        {/* This is a comment inside a JSX */}
+        <p onClick={this.props.clickMethodPassedNameCanBeAnything}>
           {/* props must be referenced as this.props*/}
-        <p>Name={this.props.name}, age={this.props.age}</p>
+          Name={this.props.name}, age={this.props.age}
+        </p>
+        {/* props.children is what between the component's tag in caller */}
         <p>Props.children content = {this.props.children}</p>
       </div>
     );
