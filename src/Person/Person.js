@@ -29,6 +29,11 @@ export class PersonAsClassBasedComponent extends Component {
         </p>
         {/* props.children is what between the component's tag in caller */}
         <p>Props.children content = {this.props.children}</p>
+        <input
+          type="text"
+          onChange={this.props.inputFieldHandler}
+          value={this.props.name}
+        />
       </div>
     );
   }

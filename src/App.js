@@ -19,20 +19,8 @@ class App extends Component {
   };
 
   //...Handler is a convention to indicate that this method is not actively called, but assigned to an event handler
-  changeNameHandler = (newName) => {
-    console.log('Change name button was clicked');
-
-    // Do not mutate state directly. Use setState()  react/no-direct-mutation-state
-    //this.state.persons[0].name='Andras mutated';
-    // setState takes an object as an arge an MERGE with existing state data
-
-    // this doesnt work, doesnt change the DOM
-    // let persons = [
-    //   { name: 'Andras 2', age: rando() },
-    //   { name: 'Tibor 2', age: rando() },
-    //   { name: 'Klara 2', age: rando() },
-    // ];
-    //this.setState(persons);
+  changeAllPersonsHandler = (newName) => {
+    console.log('Change name button or <p> fields were clicked');
 
     // setState is only available in Class based components. In Functional based components use useState()
     this.setState({
@@ -42,31 +30,54 @@ class App extends Component {
         { name: 'Func3 ' + newName, age: rando() },
         { name: 'Class ' + newName, age: rando() },
       ],
+      // Do not mutate state directly. Use setState()  react/no-direct-mutation-state
+      //this.state.persons[0].name='Andras mutated';
+      // setState takes an object as an arge an MERGE with existing state data
+
+      // this doesnt work, doesnt change the DOM
+      // let persons = [
+      //   { name: 'Andras 2', age: rando() },
+      //   { name: 'Tibor 2', age: rando() },
+      //   { name: 'Klara 2', age: rando() },
+      // ];
+      //this.setState(persons);
     });
     // this.setState({ // curly bracket needed because the parameter must be an object
     //   persons: { name: 'Andras used State', age: 111 },
     // });
   };
 
+  // This handles the event.target.value to set the name based on what added
+  changeNameFromInputValue = (event) => {
+    this.setState({
+      persons: [
+        { name: 'Func1 ' , age: rando() },
+        { name: 'Func2 ' , age: rando() },
+        { name: 'Func3 ' , age: rando() },
+        { name: event.target.value, age: rando() },
+      ],
+    });
+  };
+
   render() {
     return (
       // this is JSX code that will be compiled automatically when added to the DOM
       <div className="App">
-        <h1>This is React inside App div</h1>
+        <h1>This is React inside App div DONALD</h1>
         {/* In JSX, onClick is with capital C, in regular js it is onclick 
         The method name must not have () because then it would be executed 
         */}
-        <button onClick={this.changeNameHandler}>Change name</button>
+        <button onClick={this.changeAllPersonsHandler}>Change name</button>
         <p>This is a paragraph inside of main div</p>
         <PersonButCanBeAnything
           // passing a METHOD as a property to a stateless component
-          clickMethod={this.changeNameHandler}
+          clickMethod={this.changeAllPersonsHandler}
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
         />
         <PersonButCanBeAnything
           // providing an argument for the passed method
-          clickMethod={this.changeNameHandler.bind(
+          clickMethod={this.changeAllPersonsHandler.bind(
             this,
             'new Argument with .bind'
           )}
@@ -76,14 +87,14 @@ class App extends Component {
         <PersonButCanBeAnything
           // another way of providing an argument of the passed method
           clickMethod={() =>
-            this.changeNameHandler('new Argument with arrow function')
+            this.changeAllPersonsHandler('new Argument with arrow function')
           }
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
         />
         <PersonButCanBeAnything
           // not providing any argument
-          clickMethod={this.changeNameHandler}
+          clickMethod={this.changeAllPersonsHandler}
         >
           This person does not have name and age attributes when called from App
         </PersonButCanBeAnything>
@@ -91,7 +102,11 @@ class App extends Component {
         <Pacbc
           name={this.state.persons[3].name}
           age={this.state.persons[3].age}
-          clickMethodPassedNameCanBeAnything={this.changeNameHandler.bind(this, 'new Argument from Class based component')}
+          clickMethodPassedNameCanBeAnything={this.changeAllPersonsHandler.bind(
+            this,
+            'new Argument from Class based component'
+          )}
+          inputFieldHandler={this.changeNameFromInputValue}
         >
           This is inside Pacbc element
         </Pacbc>
