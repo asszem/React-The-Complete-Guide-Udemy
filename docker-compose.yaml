@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  reactdevapp:
+    image: react-guide:1.0
+    container_name: ReactDevContainerFromCompose
+      #build:
+      #context: .
+      #dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3002:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true

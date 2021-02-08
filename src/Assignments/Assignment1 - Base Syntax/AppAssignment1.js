@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './AppAssignment1.css';
 // must start with a capital letter...
 import UserInput from './User/UserInput';
 import UserOutputComponent from './User/UserOutput';
@@ -27,7 +27,7 @@ class Assignment1App extends Component {
     };
 
     return (
-      <div className="App">
+      <div className="AppAssignment1">
         <p style={inlineStyle}>Test Assignment 1</p>
         <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
