@@ -17,7 +17,7 @@ class Assignment1App extends Component {
 
   render() {
     const inlineStyle = {
-      backgroundColor: 'yellow',
+      backgroundColor: 'black',
       font: 'inherit',
       border: '3px solid black',
       padding: '8px',
@@ -43,11 +43,11 @@ class Assignment1App extends Component {
             it there
           </li>
           <li>
-            Add state to the App component (=> the username) and pass the
+            Add state to the App component (={'>'} the username) and pass the
             username to the UserOutput component
           </li>
           <li>
-            Add a method to manipulate the state (=> an event-handler method)
+            Add a method to manipulate the state (={'>'} an event-handler method)
           </li>
           <li>
             Pass the event-handler method reference to the UserInput component

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './UserInput.css';
 
 const userInput = (props) => {
