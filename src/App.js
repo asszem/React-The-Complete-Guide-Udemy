@@ -23,11 +23,12 @@ class App extends Component {
   changeEveryNameHandler = (newName) => {
     console.log('Change name button or <p> fields were clicked');
 
-    // setState is only available in Class based components. In Functional based components use useState(). 
+    // setState is only available in Class based components. In Functional based components use useState().
     // setState MERGES the new value added with existing
     // useState REPLACE to the new value of the existing value
     this.setState({
-      persons: [ // in this case, only the persons key value is replaced
+      persons: [
+        // in this case, only the persons key value is replaced
         { name: 'Func1 ' + newName, age: rando() },
         { name: 'Func2 ' + newName, age: rando() },
         { name: 'Func3 ' + newName, age: rando() },
@@ -67,6 +68,61 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer',
     };
+
+    let persons = null;
+
+    // set conditionally the value of persons based on state.showPersons
+    if (this.state.showPersons) {
+      persons = ( //this is JSX content inside ()
+        <div>
+          <PersonFunctionalComponent
+            // passing a METHOD as a property to a stateless component
+            // The method name must not have () because then it would be executed
+            clickMethod={this.changeEveryNameHandler}
+            name={this.state.persons[0].name}
+            age={this.state.persons[0].age}
+          />
+          <PersonFunctionalComponent
+            // providing an argument for the passed method
+            clickMethod={this.changeEveryNameHandler.bind(
+              this,
+              'new Argument with .bind'
+            )}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+          />
+          <PersonFunctionalComponent
+            // another way of providing an argument of the passed method
+            clickMethod={() =>
+              this.changeEveryNameHandler('new Argument with arrow function')
+            }
+            name={this.state.persons[2].name}
+            age={this.state.persons[2].age}
+          />
+          <PersonFunctionalComponent
+            // not providing any argument
+            clickMethod={this.changeEveryNameHandler}
+          >
+            This person does not have name and age attributes when called from
+            App
+          </PersonFunctionalComponent>
+
+          {/* Class based components added */}
+          <Pacbc
+            name={this.state.persons[3].name}
+            age={this.state.persons[3].age}
+            clickMethodPassedNameCanBeAnything={this.changeEveryNameHandler.bind(
+              this,
+              'new Argument from Class based component'
+            )}
+            inputFieldHandler={this.changeEveryNameFromInputValueHandler}
+          >
+            This is inside first class based element
+          </Pacbc>
+        </div>
+      );
+    }
+
     return (
       // this is JSX code that will be compiled automatically when added to the DOM
       <div className="App">
@@ -85,62 +141,7 @@ class App extends Component {
           Toggle Name Display
         </button>
         {/* Displaying the entire div below based on condition  */}
-        {
-          this.state.showPersons ? (
-            // terniary expression: condition ? true : false
-            <div>
-              {/* Functional Components added */}
-              <PersonFunctionalComponent
-                // passing a METHOD as a property to a stateless component
-                // The method name must not have () because then it would be executed
-                clickMethod={this.changeEveryNameHandler}
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}
-              />
-              <PersonFunctionalComponent
-                // providing an argument for the passed method
-                clickMethod={this.changeEveryNameHandler.bind(
-                  this,
-                  'new Argument with .bind'
-                )}
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-              />
-              <PersonFunctionalComponent
-                // another way of providing an argument of the passed method
-                clickMethod={() =>
-                  this.changeEveryNameHandler(
-                    'new Argument with arrow function'
-                  )
-                }
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}
-              />
-              <PersonFunctionalComponent
-                // not providing any argument
-                clickMethod={this.changeEveryNameHandler}
-              >
-                This person does not have name and age attributes when called
-                from App
-              </PersonFunctionalComponent>
-
-              {/* Class based components added */}
-              <Pacbc
-                name={this.state.persons[3].name}
-                age={this.state.persons[3].age}
-                clickMethodPassedNameCanBeAnything={this.changeEveryNameHandler.bind(
-                  this,
-                  'new Argument from Class based component'
-                )}
-                inputFieldHandler={this.changeEveryNameFromInputValueHandler}
-              >
-                This is inside first class based element
-              </Pacbc>
-            </div>
-          ) : // the FALSE state of the terniary expression
-          null
-          //div is enclosed inside }
-        }
+        {persons}
 
         <h3>
           <a href="https://ibm-learning.udemy.com/course/react-the-complete-guide-incl-redux/">
