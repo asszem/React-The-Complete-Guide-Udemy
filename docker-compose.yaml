@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   reactdevapp:
-    image: react-guide:1.0
+    image: asszem/react-guide-dev:1.0
     container_name: ReactDevContainerFromCompose
       #build:
       #context: .

@@ -75,14 +75,23 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
         <div>
-          <PersonFunctionalComponent
+          {this.state.persons.map((person) => {
+            return (
+              <PersonFunctionalComponent
+                name={person.name}
+                age={person.age}
+              ></PersonFunctionalComponent>
+            );
+          })}
+
+          {/* <PersonFunctionalComponent
             // passing a METHOD as a property to a stateless component
             // The method name must not have () because then it would be executed
             clickMethod={this.changeEveryNameHandler}
             name={this.state.persons[0].name}
             age={this.state.persons[0].age}
-          />
-          <PersonFunctionalComponent
+          /> */}
+          {/* <PersonFunctionalComponent
             // providing an argument for the passed method
             clickMethod={this.changeEveryNameHandler.bind(
               this,
@@ -90,22 +99,22 @@ class App extends Component {
             )}
             name={this.state.persons[1].name}
             age={this.state.persons[1].age}
-          />
-          <PersonFunctionalComponent
+          /> */}
+          {/* <PersonFunctionalComponent
             // another way of providing an argument of the passed method
             clickMethod={() =>
               this.changeEveryNameHandler('new Argument with arrow function')
             }
             name={this.state.persons[2].name}
             age={this.state.persons[2].age}
-          />
-          <PersonFunctionalComponent
+          /> */}
+          {/* <PersonFunctionalComponent
             // not providing any argument
             clickMethod={this.changeEveryNameHandler}
           >
             This person does not have name and age attributes when called from
             App
-          </PersonFunctionalComponent>
+          </PersonFunctionalComponent> */}
 
           {/* Class based components added */}
           <Pacbc
@@ -137,9 +146,7 @@ class App extends Component {
           Change names
         </button>
 
-        <button style={inlineStyle} onClick={this.toggleNameField}>
-          Toggle Name Display
-        </button>
+        <button style={inlineStyle} onClick={this.toggleNameField}> Toggle Name Display </button>
         {/* Displaying the entire div below based on condition  */}
         {persons}
 
@@ -149,9 +156,6 @@ class App extends Component {
           </a>
         </h3>
       </div>
-
-      // this is not allowed, the jsx should return only one root element
-      // <p> paragraph outside of main div</p>
     );
   } //end of render()
 } //end of App class
