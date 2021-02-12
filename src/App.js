@@ -4,59 +4,69 @@ import './App.css';
 // this is using the default export from Person.js
 import PersonFunctionalComponent from './Person/Person'; //Person.js extension can be ommitted
 // importing a specific class needs to be inside {} brackets
-import { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
+// import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
 
 // "App" is the root component, that can have infinite nested child components
 class App extends Component {
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
   state = {
+    showPersons: true,
     persons: [
-      { name: 'Func1 ', age: 11 },
-      { name: 'Func2 ', age: 22 },
-      { name: 'Func3 ', age: 33 },
-      { name: 'Class ', age: 44 },
+      { id: 1, name: 'Person1 ', age: 11 },
+      { id: 2, name: 'Person2 ', age: 22 },
+      { id: 3, name: 'Person3 ', age: 33 },
+      { id: 4, name: 'Person4 ', age: 44 },
     ],
-    otherKey: 'otherValue',
-    showPersons: false,
   };
+
   //...Handler is a convention to indicate that this method is not actively called, but assigned to an event handler
   changeEveryNameHandler = (newName) => {
-    console.log('Change name button or <p> fields were clicked');
-
     // setState is only available in Class based components. In Functional based components use useState().
     // setState MERGES the new value added with existing
     // useState REPLACE to the new value of the existing value
     this.setState({
       persons: [
-        // in this case, only the persons key value is replaced
-        { name: 'Func1 ' + newName, age: rando() },
-        { name: 'Func2 ' + newName, age: rando() },
-        { name: 'Func3 ' + newName, age: rando() },
-        { name: 'Class ' + newName, age: rando() },
+        { id: 1, name: newName + '1 ', age: rando() },
+        { id: 2, name: newName + '2 ', age: rando() },
+        { id: 3, name: newName + '3 ', age: rando() },
+        { id: 4, name: newName + '4 ', age: rando() },
       ],
       // Do not mutate state directly. Use setState()  react/no-direct-mutation-state
       //this.state.persons[0].name='Andras mutated';
-      // setState takes an object as an arge an MERGE with existing state data
     });
   };
 
-  // This handles the event.target.value to set the name based on what added
-  changeEveryNameFromInputValueHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: this.state.persons[0].name, age: this.state.persons[0].age },
-        { name: this.state.persons[1].name, age: this.state.persons[1].age },
-        { name: this.state.persons[2].name, age: this.state.persons[2].age },
-        { name: event.target.value, age: rando() },
-      ],
+  // Change only a specific name based on an index
+  // event is a reserved word to pass event info
+  changePersonNameHandler = (event, id) => {
+    // get the index of the person where the button was pressed
+    const personIndex = this.state.persons.findIndex((person) => {
+      return person.id === id;
     });
+    const personToUpdate = { ...this.state.persons[personIndex] }; // create a copy of the ONE object from the persons ARRAY that will be changed
+    personToUpdate.name = event.target.value;
+
+    const updatedPersons = [...this.state.persons]; // create a copy of the state array
+    updatedPersons[personIndex] = personToUpdate; // update the person in the new array based on the updatedPerson object
+    this.setState({ persons: updatedPersons }); // execute the state update
   };
 
-  // a (property) that defines an arrow function will have it's 'this' return to the calling class "App" while in a (method) it's not
-
-  toggleNameField = () => {
+  toggleNameFieldHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow }); // change the value to the opposite (and the remaining state content is merged)
+  };
+
+  deletePersonHandler = (personIndex) => {
+    console.log('Delete person index = ' + personIndex);
+    //Handling state inmutable by creating a new object copy that is not a reference
+    // This is a reference:
+    // const newStateReferenceToState = this.state.person;
+    // This is one way to create a new object:
+    const newStateWithPersonDeletedwithSlice = this.state.persons.slice();
+    // This is ES6 spread operator to create a new array based on content of another array
+    const newStateWithPersonDeleted = [...this.state.persons];
+    newStateWithPersonDeleted.splice(personIndex, 1); //removes the element from (startIndex, numberOfElementsToBeRemoved)
+    this.setState({ persons: newStateWithPersonDeleted });
   };
 
   render() {
@@ -75,59 +85,21 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
         <div>
-          {this.state.persons.map((person) => {
+          {this.state.persons.map((person, index) => {
             return (
               <PersonFunctionalComponent
+                key={person.id} //should not be index, because it migth change with every state change, after a deletion for example
                 name={person.name}
                 age={person.age}
-              ></PersonFunctionalComponent>
+                onDelete={() => this.deletePersonHandler(index)}
+                onInput={(event) =>
+                  this.changePersonNameHandler(event, person.id)
+                } // 'event' needs to be passed as an argument here
+              >
+                {index}
+              </PersonFunctionalComponent>
             );
           })}
-
-          {/* <PersonFunctionalComponent
-            // passing a METHOD as a property to a stateless component
-            // The method name must not have () because then it would be executed
-            clickMethod={this.changeEveryNameHandler}
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-          /> */}
-          {/* <PersonFunctionalComponent
-            // providing an argument for the passed method
-            clickMethod={this.changeEveryNameHandler.bind(
-              this,
-              'new Argument with .bind'
-            )}
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-          /> */}
-          {/* <PersonFunctionalComponent
-            // another way of providing an argument of the passed method
-            clickMethod={() =>
-              this.changeEveryNameHandler('new Argument with arrow function')
-            }
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-          /> */}
-          {/* <PersonFunctionalComponent
-            // not providing any argument
-            clickMethod={this.changeEveryNameHandler}
-          >
-            This person does not have name and age attributes when called from
-            App
-          </PersonFunctionalComponent> */}
-
-          {/* Class based components added */}
-          <Pacbc
-            name={this.state.persons[3].name}
-            age={this.state.persons[3].age}
-            clickMethodPassedNameCanBeAnything={this.changeEveryNameHandler.bind(
-              this,
-              'new Argument from Class based component'
-            )}
-            inputFieldHandler={this.changeEveryNameFromInputValueHandler}
-          >
-            This is inside first class based element
-          </Pacbc>
         </div>
       );
     }
@@ -141,12 +113,15 @@ class App extends Component {
           // no 'this' is required because the variable is inside render(){} and not inside the App{}
           style={inlineStyle}
           //  In JSX, onClick is with capital C, in regular js it is onclick
-          onClick={this.changeEveryNameHandler}
+          onClick={() => this.changeEveryNameHandler(rando())}
         >
-          Change names
+          Change Every Name
         </button>
 
-        <button style={inlineStyle} onClick={this.toggleNameField}> Toggle Name Display </button>
+        <button style={inlineStyle} onClick={this.toggleNameFieldHandler}>
+          {' '}
+          Toggle Name Display{' '}
+        </button>
         {/* Displaying the entire div below based on condition  */}
         {persons}
 

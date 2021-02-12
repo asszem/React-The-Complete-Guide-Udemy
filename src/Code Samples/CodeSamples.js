@@ -23,20 +23,25 @@ class CodeSamples extends Component {
   phoneClickHandler = (id) => {
     console.log('Phone clicked. ID = ' + id);
   };
+  
+  deletePhoneHandler = (phoneIndex, id) => {
+    console.log('Delete phone clicked. ID = ' + id + ' index = ' + phoneIndex);
+
+  };
 
   render() {
-    // let phones = null;
     let phones = (
       <div>
         {this.state.phones.map((phone, index) => {
           return (
             <ListPhones
               onClick={() => this.phoneClickHandler(phone.id)}
+              onDelete={this.deletePhoneHandler.bind(this, index, phone.id)}
               type={phone.type}
               color={phone.color}
               stylePhones="Phones"
               stylePhone="Phone"
-            />
+            >{index}</ListPhones>
           );
         })}
       </div>

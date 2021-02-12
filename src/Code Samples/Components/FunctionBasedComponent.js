@@ -11,10 +11,12 @@ const functionBasedComponent = (props) => {
   };
   return (
     <div className={props.stylePhones}>
+      <p>{props.children}</p>
       <p className={props.stylePhone} onClick={props.onClick}>
         Type: {props.type} Color: {props.color}
       </p>
       <input style={inputClassName} type="text" value={props.type}/>
+      <button onClick={props.onDelete}>Delete!</button>
     </div>
   );
 };
