@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 // import Assignment1App from './Assignments/Assignment1 - Base Syntax/AppAssignment1.js';
+import Assignment2App from './Assignments/Assignment2 - Lists/AppAssignment2';
 import CodeSamples from './Code Samples/CodeSamples';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Assignment2App />
     <CodeSamples />
     <App />
     {/* <Assignment1App /> */}
