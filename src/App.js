@@ -61,7 +61,7 @@ class App extends Component {
     // This is a reference:
     // const newStateReferenceToState = this.state.person;
     // This is one way to create a new object:
-    const newStateWithPersonDeletedwithSlice = this.state.persons.slice();
+    //const newStateWithPersonDeletedwithSlice = this.state.persons.slice();
     // This is ES6 spread operator to create a new array based on content of another array
     const newStateWithPersonDeleted = [...this.state.persons];
     newStateWithPersonDeleted.splice(personIndex, 1); //removes the element from (startIndex, numberOfElementsToBeRemoved)
@@ -78,9 +78,8 @@ class App extends Component {
       cursor: 'pointer',
     };
 
-    let persons = null;
-
     // set conditionally the value of persons based on state.showPersons
+    let persons = null;
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
         <div>

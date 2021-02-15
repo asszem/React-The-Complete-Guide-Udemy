@@ -4,18 +4,25 @@
 
 .Phones {
   width: 60%;
+  margin: 10px auto;
   border: 5px solid darkgrey;
-  background-color:grey;
+  background-color: grey;
   box-shadow: 0 2px 3px #ccc;
   padding: 10px;
   margin: 20px auto;
   text-align: center;
   cursor: default;
 }
+
+.PhoneSelected {
+  background-color: brown;
+  border: 10px solid red;
+}
+
 .Phone {
   width: 60%;
   border: 5px solid blue;
-  background-color:blue;
+  background-color: blue;
   box-shadow: 0 2px 3px #ccc;
   padding: 10px;
   margin: 20px auto;
@@ -23,10 +30,7 @@
   cursor: pointer;
 }
 
-.Owners{
-
-}
-
-.Input{
-
+.DeleteButton {
+  margin: 10px auto;
+  background-color: yellowgreen;
 }

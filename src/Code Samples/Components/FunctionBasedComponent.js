@@ -4,10 +4,10 @@ const functionBasedComponent = (props) => {
     color: 'black',
     font: 'inherit',
     border: '3px solid black',
-    padding: '8px',
+    padding: '10px',
     cursor: 'pointer',
     textAlign: 'center',
-    margin: '5px auto',
+    margin: '10px auto',
   };
   return (
     <div className={props.stylePhones}>
@@ -16,7 +16,7 @@ const functionBasedComponent = (props) => {
         Type: {props.type} Color: {props.color}
       </p>
       <input style={inputClassName} type="text" value={props.type} onChange={props.onInput}/>
-      <button onClick={props.onDelete}>Delete!</button>
+      <button className="DeleteButton" onClick={props.onDelete}>Delete!</button>
     </div>
   );
 };
