@@ -57,7 +57,6 @@ class App extends Component {
   };
 
   deletePersonHandler = (personIndex) => {
-    console.log('Delete person index = ' + personIndex);
     //Handling state inmutable by creating a new object copy that is not a reference
     // This is a reference:
     // const newStateReferenceToState = this.state.person;

@@ -6,9 +6,9 @@ import ListPhones from './Components/FunctionBasedComponent'; // import the defa
 class CodeSamples extends Component {
   state = {
     phones: [
-      { id: 1, type: 'OnePlus', color: 'red' },
-      { id: 2, type: 'Samsung', color: 'black' },
-      { id: 3, type: 'iPhone', color: 'white' },
+      { id: 1, type: 'OnePlus', color: 'red', isSelected: false },
+      { id: 2, type: 'Samsung', color: 'black', isSelected: false },
+      { id: 3, type: 'iPhone', color: 'white', isSelected: false },
     ],
     showPhones: true,
     owners: [
@@ -23,10 +23,31 @@ class CodeSamples extends Component {
   phoneClickHandler = (id) => {
     console.log('Phone clicked. ID = ' + id);
   };
-  
-  deletePhoneHandler = (phoneIndex, id) => {
-    console.log('Delete phone clicked. ID = ' + id + ' index = ' + phoneIndex);
 
+  deletePhoneHandler = (index) => {
+    //create a copy of the state
+    const newStateOfPhones = [...this.state.phones];
+    // remove the item based on the index provided in the .map() method
+    newStateOfPhones.splice(index,1);
+    // update the state
+    this.setState({ phones: newStateOfPhones });
+  };
+
+  changeTypeHandler = (event, id) => {
+    // get the index of the item with id
+    const indexOfPhoneToBeChanged = this.state.phones.findIndex((phone) => {
+      return phone.id === id;
+    });
+    // create a copy of that item
+    const newPhone = { ...this.state.phones[indexOfPhoneToBeChanged] };
+    // change the value in the copy
+    newPhone.type = event.target.value;
+    // create a new Phones object
+    const newStateOfPhones = [...this.state.phones];
+    // change the object at index to the new object
+    newStateOfPhones[indexOfPhoneToBeChanged] = newPhone;
+    // update the state
+    this.setState({ phones: newStateOfPhones });
   };
 
   render() {
@@ -35,13 +56,19 @@ class CodeSamples extends Component {
         {this.state.phones.map((phone, index) => {
           return (
             <ListPhones
+              key={phone.id}
               onClick={() => this.phoneClickHandler(phone.id)}
-              onDelete={this.deletePhoneHandler.bind(this, index, phone.id)}
+              onDelete={this.deletePhoneHandler.bind(this, index)}
+              onInput={(event) => {
+                this.changeTypeHandler(event, phone.id);
+              }}
               type={phone.type}
               color={phone.color}
               stylePhones="Phones"
               stylePhone="Phone"
-            >{index}</ListPhones>
+            >
+              Index: {index}
+            </ListPhones>
           );
         })}
       </div>

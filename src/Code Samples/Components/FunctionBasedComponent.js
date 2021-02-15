@@ -15,7 +15,7 @@ const functionBasedComponent = (props) => {
       <p className={props.stylePhone} onClick={props.onClick}>
         Type: {props.type} Color: {props.color}
       </p>
-      <input style={inputClassName} type="text" value={props.type}/>
+      <input style={inputClassName} type="text" value={props.type} onChange={props.onInput}/>
       <button onClick={props.onDelete}>Delete!</button>
     </div>
   );
