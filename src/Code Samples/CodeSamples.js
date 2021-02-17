@@ -49,7 +49,7 @@ class CodeSamples extends Component {
     let phones = (
       <div>
         {this.state.phones.map((phone, index) => {
-          const phoneClass = ['Phones']; // assign an empty class
+          const phoneClass = ['Phones'];
           if (phone.isSelected) {
             phoneClass.push('PhoneSelected');
           }

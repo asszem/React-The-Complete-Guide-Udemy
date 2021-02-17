@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // extension is required from any non .js file
 import './App.css';
 // this is using the default export from Person.js
+import Radium from 'radium';
 import PersonFunctionalComponent from './Person/Person'; //Person.js extension can be ommitted
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
@@ -71,11 +72,15 @@ class App extends Component {
   render() {
     // must be inside the render() {...} otherwise const won't be allowed to be used
     const inlineStyle = {
-      backgroundColor: 'red',
+      backgroundColor: 'green',
       font: 'inherit',
       border: '3px solid green',
       padding: '8px',
       cursor: 'pointer',
+      ':hover': { // a pseudo selector enabled by Radium
+          backgroundColor: 'lightgreen',
+          color: 'yellow'
+      }
     };
 
     // set conditionally the value of persons based on state.showPersons
@@ -100,6 +105,20 @@ class App extends Component {
           })}
         </div>
       );
+
+    inlineStyle.backgroundColor='red';
+    }
+
+    inlineStyle[':hover'] = {
+      backgroundColor: 'darkgreen',
+      color: 'magenta'
+    }
+    const classes=[];
+    if (this.state.persons.length<=2){
+      classes.push('red');
+    }
+    if (this.state.persons.length<=1){
+      classes.push('redBorder')
     }
 
     return (
@@ -116,7 +135,7 @@ class App extends Component {
           Change Every Name
         </button>
 
-        <button style={inlineStyle} onClick={this.toggleNameFieldHandler}>
+        <button className={classes.join(' ')} onClick={this.toggleNameFieldHandler}>
           {' '}
           Toggle Name Display{' '}
         </button>
@@ -139,4 +158,5 @@ let rando = () => {
 
 // default export is if the file is imported, this class will be exported
 // index.js does import this file, class:  import App from './App';
-export default App;
+// Radium uses a "higher order component"
+export default Radium(App);

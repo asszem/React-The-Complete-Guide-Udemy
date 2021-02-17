@@ -2,7 +2,8 @@ version: "3.7"
 
 services:
   reactdevapp:
-    image: asszem/react-guide-dev:1.0
+    #image: asszem/react-guide-dev:1.0
+    image: asszem/react-guide-dev:1.1 #with Radium
     container_name: ReactDevContainerFromCompose
       #build:
       #context: .

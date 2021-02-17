@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+.red {
+  background-color: red;
+}
+
+.redBorder {
+  border: 15px auto red;
+  background-color: rosybrown;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // the css needs to be imported and will be injected dynamicall by webpack to final html's head section between <style> tags
+import Radium from 'radium';
 import './Person.css';
 
 //Functional components (also referred to as "presentational", "dumb" or "stateless" components
@@ -42,4 +43,4 @@ export class PersonClassBasedComponent extends Component {
   }
 }
 
-export default person;
+export default Radium(person);
