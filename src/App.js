@@ -1,9 +1,9 @@
 import React, { Component } from 'react'; // Import the default export from React and then import a named export called Component
 // extension is required from any non .js file
 import './App.css';
-// this is using the default export from Person.js
-import Radium from 'radium';
+// import Radium from 'radium';
 import PersonFunctionalComponent from './Person/Person'; //Person.js extension can be ommitted
+// this is using the default export from Person.js
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
 
@@ -77,9 +77,9 @@ class App extends Component {
       border: '3px solid green',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': { // a pseudo selector enabled by Radium
-        backgroundColor: 'darkgray',
-      }
+      // ':hover': { // a pseudo selector enabled by Radium
+      //   backgroundColor: 'darkgray',
+      // }
     };
 
     // set conditionally the value of persons based on state.showPersons
@@ -156,5 +156,7 @@ let rando = () => {
 
 // default export is if the file is imported, this class will be exported
 // index.js does import this file, class:  import App from './App';
+
+export default App;
+// export default Radium(App);
 // Radium uses a "higher order component"
-export default Radium(App);

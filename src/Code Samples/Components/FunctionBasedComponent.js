@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium from 'radium';
+// import Radium from 'radium';
 
 const functionBasedComponent = (props) => {
   const inputClassName = {
@@ -11,10 +11,10 @@ const functionBasedComponent = (props) => {
     cursor: 'pointer',
     textAlign: 'center',
     margin: '10px auto',
-    ':hover': { // a pseudo selector enabled by Radium
-      backgroundColor: 'lightgreen',
-      color: 'yellow'
-    }
+    // ':hover': { // a pseudo selector enabled by Radium
+    //   backgroundColor: 'lightgreen',
+    //   color: 'yellow'
+    // }
   };
   return (
     <div className={props.stylePhones}>
@@ -28,4 +28,4 @@ const functionBasedComponent = (props) => {
   );
 };
 
-export default Radium(functionBasedComponent);
+export default functionBasedComponent;
