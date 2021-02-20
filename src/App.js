@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // Import the default export from React and then import a named export called Component
 // extension is required from any non .js file
 import './App.css';
 // this is using the default export from Person.js
@@ -72,14 +72,13 @@ class App extends Component {
   render() {
     // must be inside the render() {...} otherwise const won't be allowed to be used
     const inlineStyle = {
-      backgroundColor: 'green',
+      backgroundColor: 'gray',
       font: 'inherit',
       border: '3px solid green',
       padding: '8px',
       cursor: 'pointer',
       ':hover': { // a pseudo selector enabled by Radium
-          backgroundColor: 'lightgreen',
-          color: 'yellow'
+        backgroundColor: 'darkgray',
       }
     };
 
@@ -106,18 +105,17 @@ class App extends Component {
         </div>
       );
 
-    inlineStyle.backgroundColor='red';
+      inlineStyle.backgroundColor = 'green';
+      inlineStyle[':hover'] = {
+        backgroundColor: 'darkgreen',
+      }
     }
 
-    inlineStyle[':hover'] = {
-      backgroundColor: 'darkgreen',
-      color: 'magenta'
-    }
-    const classes=[];
-    if (this.state.persons.length<=2){
+    const classes = [];
+    if (this.state.persons.length <= 2) {
       classes.push('red');
     }
-    if (this.state.persons.length<=1){
+    if (this.state.persons.length <= 1) {
       classes.push('redBorder')
     }
 
