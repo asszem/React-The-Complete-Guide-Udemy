@@ -2,7 +2,7 @@ import React, { Component } from 'react'; // Import the default export from Reac
 // extension is required from any non .js file
 import './App.css';
 // import Radium from 'radium';
-import PersonFunctionalComponent from './Person/Person'; //Person.js extension can be ommitted
+import PersonFunctionalComponent from '../components/Persons/Person/Person'; //Person.js extension can be ommitted
 // this is using the default export from Person.js
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
