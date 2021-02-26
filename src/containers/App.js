@@ -2,8 +2,7 @@ import React, { Component } from 'react'; // Import the default export from Reac
 // extension is required from any non .js file
 import './App.css';
 // import Radium from 'radium';
-import PersonFunctionalComponent from '../components/Persons/Person/Person'; //Person.js extension can be ommitted
-// this is using the default export from Person.js
+import Persons from '../components/Persons/Persons'; // this is using the default export from Persons.js
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
 
@@ -87,21 +86,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <PersonFunctionalComponent
-                key={person.id} //should not be index, because it migth change with every state change, after a deletion for example
-                name={person.name}
-                age={person.age}
-                onDelete={() => this.deletePersonHandler(index)}
-                onInput={(event) =>
-                  this.changePersonNameHandler(event, person.id)
-                } // 'event' needs to be passed as an argument here
-              >
-                {index}
-              </PersonFunctionalComponent>
-            );
-          })}
+          <Persons
+          persons={this.state.persons} //to pass the state
+          onDelete={this.deletePersonHandler} //the parameters will be assigned in the Persons component
+          onChange={this.changePersonNameHandler} // because persons array will be used in that component
+          />
         </div>
       );
 

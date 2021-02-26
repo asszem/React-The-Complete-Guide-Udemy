@@ -11,11 +11,10 @@ const person = (props) => {
   // this is a JSX syntax, we need to import React
   return (
     <div className="FunctionalComponent">
-      <p>Index: {props.children}</p>
       <p>
         Name={props.name}, age={props.age}
       </p>
-      <input type="text" value={props.name} onChange={props.onInput}></input>
+      <input type="text" value={props.name} onChange={props.onChange}></input>
       <button onClick={props.onDelete}>Delete</button>
     </div>
   );
