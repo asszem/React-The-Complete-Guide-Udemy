@@ -21,3 +21,13 @@
 .Cockpit button.Bold {
     font-weight: bold;
 }
+
+.Cockpit .testClass{
+  background-color: red;
+  color: white;
+}
+
+.testClass2{
+  background-color: blue;
+  color: white;
+}

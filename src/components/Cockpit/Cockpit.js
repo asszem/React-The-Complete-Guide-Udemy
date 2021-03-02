@@ -1,6 +1,6 @@
 import React from 'react';
 import {rando} from '../../containers/App';
-import classes from './Cockpit.css';
+import classes from './Cockpit.module.css';
 
 const cockpit = (props) => {
     const assignedClasses = [];
@@ -20,9 +20,12 @@ const cockpit = (props) => {
     console.log('assigned classes=' +assignedClasses);
     console.log('btnClass = ' + btnClass);
   return (
+    <div>
     <div className={classes.Cockpit}>
-      <h1>React Demo</h1>
-      <p className={assignedClasses.join(' ')}>This is Sparta!</p>
+      <h1>{props.appTitle}</h1>
+      <p className={classes.testClass}>.testClass red </p>
+      </div>
+      <p className={classes.testClass2}>.testClass2 blue</p>
       <button
       className={assignedClasses.join(' ')}
         onClick={() => props.changeNames(rando())}

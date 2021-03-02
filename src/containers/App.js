@@ -89,6 +89,7 @@ class App extends Component {
       // this is JSX code that will be compiled automatically when added to the DOM
       <div className="App">
         <Cockpit
+          appTitle={this.props.appTitle}
           persons={this.state.persons}
           stateShowNames={this.state.showNames}
           showNames={this.toggleShowNamesHandler}
