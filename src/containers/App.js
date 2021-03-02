@@ -2,7 +2,9 @@ import React, { Component } from 'react'; // Import the default export from Reac
 // extension is required from any non .js file
 import './App.css';
 // import Radium from 'radium';
+
 import Persons from '../components/Persons/Persons'; // this is using the default export from Persons.js
+import Cockpit from '../components/Cockpit/Cockpit';
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
 
@@ -51,7 +53,7 @@ class App extends Component {
     this.setState({ persons: updatedPersons }); // execute the state update
   };
 
-  toggleNameFieldHandler = () => {
+  toggleShowNamesHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({ showPersons: !doesShow }); // change the value to the opposite (and the remaining state content is merged)
   };
@@ -69,79 +71,38 @@ class App extends Component {
   };
 
   render() {
-    // must be inside the render() {...} otherwise const won't be allowed to be used
-    const inlineStyle = {
-      backgroundColor: 'gray',
-      font: 'inherit',
-      border: '3px solid green',
-      padding: '8px',
-      cursor: 'pointer',
-      // ':hover': { // a pseudo selector enabled by Radium
-      //   backgroundColor: 'darkgray',
-      // }
-    };
-
     // set conditionally the value of persons based on state.showPersons
     let persons = null;
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
         <div>
           <Persons
-          persons={this.state.persons} //to pass the state
-          onDelete={this.deletePersonHandler} //the parameters will be assigned in the Persons component
-          onChange={this.changePersonNameHandler} // because persons array will be used in that component
+            persons={this.state.persons} //to pass the state
+            onDelete={this.deletePersonHandler} //the parameters will be assigned in the Persons component
+            onChange={this.changePersonNameHandler} // because persons array will be used in that component
           />
         </div>
       );
-
-      inlineStyle.backgroundColor = 'green';
-      inlineStyle[':hover'] = {
-        backgroundColor: 'darkgreen',
-      }
-    }
-
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('redBorder')
     }
 
     return (
       // this is JSX code that will be compiled automatically when added to the DOM
       <div className="App">
-        <h1>React Demo</h1>
-
-        <button
-          // no 'this' is required because the variable is inside render(){} and not inside the App{}
-          style={inlineStyle}
-          //  In JSX, onClick is with capital C, in regular js it is onclick
-          onClick={() => this.changeEveryNameHandler(rando())}
-        >
-          Change Every Name
-        </button>
-
-        <button className={classes.join(' ')} onClick={this.toggleNameFieldHandler}>
-          {' '}
-          Toggle Name Display{' '}
-        </button>
-        {/* Displaying the entire div below based on condition  */}
+        <Cockpit
+          persons={this.state.persons}
+          stateShowNames={this.state.showNames}
+          showNames={this.toggleShowNamesHandler}
+          changeNames={this.changeEveryNameHandler}
+        />
         {persons}
-
-        <h3>
-          <a href="https://ibm-learning.udemy.com/course/react-the-complete-guide-incl-redux/">
-            Based on React - The Complete Guide by Maximilian Schwarzmüller
-          </a>
-        </h3>
       </div>
     );
   } //end of render()
 } //end of App class
 
-let rando = () => {
+export function rando() {
   return Math.floor(Math.random() * 30);
-};
+}
 
 // default export is if the file is imported, this class will be exported
 // index.js does import this file, class:  import App from './App';
