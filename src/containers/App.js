@@ -15,7 +15,15 @@ class App extends Component {
     super(props);
     console.log('[Appj.js] constructor');
     //initial state could be set here as well, in this case it should be started with this
-    // this.state = { }
+     this.state = {
+       showPersons:false,
+    persons: [
+      { id: 1, name: 'Constructor Person1 ', age: 11 },
+      { id: 2, name: 'Constructor Person2 ', age: 22 },
+      { id: 3, name: 'Constructor Person3 ', age: 33 },
+      { id: 4, name: 'Constructor Person4 ', age: 44 },
+    ],
+      };
   }
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
   state = {

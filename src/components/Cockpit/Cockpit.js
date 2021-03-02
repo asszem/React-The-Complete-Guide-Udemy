@@ -10,18 +10,15 @@ const cockpit = (props) => {
   }
   if (props.persons.length <= 2) {
     assignedClasses.push(classes.Red);
-    console.log('xxassigned classes=' + assignedClasses);
   }
   if (props.persons.length <= 1) {
     assignedClasses.push(classes.Bold);
   }
 
   return (
-    <div>
-      <div className={classes.Cockpit}>
-        <h1>{props.appTitle}</h1>
-        <p className={classes.testClass}>.testClass red </p>
-      </div>
+    <div className={classes.Cockpit}>
+      <h1>{props.appTitle}</h1>
+      <p className={classes.testClass}>.testClass red </p>
       <p className={classes.testClass2}>.testClass2 blue</p>
       <button
         className={assignedClasses.join(' ')}
