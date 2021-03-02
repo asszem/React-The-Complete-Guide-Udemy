@@ -10,6 +10,13 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 // "App" is the root component, that can have infinite nested child components
 class App extends Component {
+  // if no constructor is defined, state = {}... will create one that calls super(props)
+  constructor(props) {
+    super(props);
+    console.log('[Appj.js] constructor');
+    //initial state could be set here as well, in this case it should be started with this
+    // this.state = { }
+  }
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
   state = {
     showPersons: true,
@@ -20,6 +27,21 @@ class App extends Component {
       { id: 4, name: 'Person4 ', age: 44 },
     ],
   };
+
+  //DO: sync state
+  //DON'T: cause side effects
+  // this needs to be static, see Component Lifecycle
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  //DO: cause side effects, like HTTP calls
+  //DON'T: Update state, it triggers re-render
+  // This is called after render()
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
 
   //...Handler is a convention to indicate that this method is not actively called, but assigned to an event handler
   changeEveryNameHandler = (newName) => {
@@ -71,6 +93,7 @@ class App extends Component {
   };
 
   render() {
+    console.log('[App.js] render');
     // set conditionally the value of persons based on state.showPersons
     let persons = null;
     if (this.state.showPersons) {

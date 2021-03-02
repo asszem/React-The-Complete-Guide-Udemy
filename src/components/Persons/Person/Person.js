@@ -8,6 +8,7 @@ import './Person.css';
 //convention - function name is in lowercase, properties variable name 'props'
 // using ES6 arrow function syntax arguments => function body
 const person = (props) => {
+  console.log('[Person.js] rendering...', props.name);
   // this is a JSX syntax, we need to import React
   return (
     <div className="FunctionalComponent">
