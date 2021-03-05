@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { rando } from '../../containers/App';
 import classes from './Cockpit.module.css';
 
-const cockpit = (props) => {
+// Component name must start with Capital
+const Cockpit = (props) => {
+  //useEffect is a React Hook that can be added to a functional component, can be added anywhere
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect1 - persons changed');
+    // Http request can be run from here
+    // setTimeout(() => {
+    //   alert('Saved data to the cloud!');
+    // }, 1000);
+  }, [props.persons]); //only execute when state.persons changed!
+
+  //can be used multiple times
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect2 - showPersons changed');
+    // Http request can be run from here
+  }, [props.stateShowNames]); //only execute when state.showPersons changed!
+
   const assignedClasses = [];
   let btnClass = '';
   if (props.stateShowNames) {
@@ -34,4 +50,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default Cockpit;

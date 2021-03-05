@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App';
+// import App from './containers/App';
 // import CodeSamples from './code samples/CodeSamples';
+import ClassBasedComponentLifecycle from './code samples/ClassBasedComponentLifecycle';
 // import Assignment1App from './assignments/Assignment1 - Base Syntax/AppAssignment1.js';
 // import Assignment2App from './assignments/Assignment2 - Lists/AppAssignment2';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App appTitle='React Guide' />
+    <ClassBasedComponentLifecycle/>
+    {/* <App appTitle='React Guide' /> */}
     {/* <CodeSamples />
     <Assignment2App />
     <Assignment1App /> */}

@@ -15,17 +15,18 @@ class App extends Component {
     super(props);
     console.log('[Appj.js] constructor');
     //initial state could be set here as well, in this case it should be started with this
-     this.state = {
-       showPersons:false,
-    persons: [
-      { id: 1, name: 'Constructor Person1 ', age: 11 },
-      { id: 2, name: 'Constructor Person2 ', age: 22 },
-      { id: 3, name: 'Constructor Person3 ', age: 33 },
-      { id: 4, name: 'Constructor Person4 ', age: 44 },
-    ],
-      };
+    this.state = {
+      showPersons: false,
+      persons: [
+        { id: 1, name: 'Constructor Person1 ', age: 11 },
+        { id: 2, name: 'Constructor Person2 ', age: 22 },
+        { id: 3, name: 'Constructor Person3 ', age: 33 },
+        { id: 4, name: 'Constructor Person4 ', age: 44 },
+      ],
+    };
   }
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
+  // if state is initialized in constructor, this will not have an effect, because no setState() was called
   state = {
     showPersons: true,
     persons: [
@@ -35,6 +36,8 @@ class App extends Component {
       { id: 4, name: 'Person4 ', age: 44 },
     ],
   };
+
+  // Lifecycle hooks
 
   //DO: sync state
   //DON'T: cause side effects
@@ -50,6 +53,19 @@ class App extends Component {
   componentDidMount() {
     console.log('[App.js] componentDidMount');
   }
+
+  //Must return something, or it wont allow the update
+  //True is default if this method is not called
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] should component update nextProps =', nextProps);
+    console.log('[App.js] should component update nextState =', nextState);
+    return true;
+  }
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
+  // Handlers
 
   //...Handler is a convention to indicate that this method is not actively called, but assigned to an event handler
   changeEveryNameHandler = (newName) => {
@@ -122,7 +138,7 @@ class App extends Component {
         <Cockpit
           appTitle={this.props.appTitle}
           persons={this.state.persons}
-          stateShowNames={this.state.showNames}
+          stateShowNames={this.state.showPersons}
           showNames={this.toggleShowNamesHandler}
           changeNames={this.changeEveryNameHandler}
         />
