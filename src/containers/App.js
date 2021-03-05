@@ -17,6 +17,7 @@ class App extends Component {
     //initial state could be set here as well, in this case it should be started with this
     this.state = {
       showPersons: false,
+      showCockpit: true,
       persons: [
         { id: 1, name: 'Constructor Person1 ', age: 11 },
         { id: 2, name: 'Constructor Person2 ', age: 22 },
@@ -135,13 +136,22 @@ class App extends Component {
     return (
       // this is JSX code that will be compiled automatically when added to the DOM
       <div className="App">
-        <Cockpit
-          appTitle={this.props.appTitle}
-          persons={this.state.persons}
-          stateShowNames={this.state.showPersons}
-          showNames={this.toggleShowNamesHandler}
-          changeNames={this.changeEveryNameHandler}
-        />
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: !this.state.showCockpit });
+          }}
+        >
+          Toggle Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            appTitle={this.props.appTitle}
+            persons={this.state.persons}
+            stateShowNames={this.state.showPersons}
+            showNames={this.toggleShowNamesHandler}
+            changeNames={this.changeEveryNameHandler}
+          />
+        ) : null}
         {persons}
       </div>
     );

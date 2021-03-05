@@ -10,7 +10,11 @@ const FunctionBasedComponentLifecycle = (props) => {
 
   useEffect(() => {
     console.log('useEffect3 - message changed');
-  }, [props.state.message]);
+  }, [props.state.message, props.blöblö]);
+
+  useEffect(() => {
+    console.log('useEffect4 - should run only once');
+  }, []);
 
   return (
     <div>

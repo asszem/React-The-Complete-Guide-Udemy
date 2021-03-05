@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './containers/App';
+import App from './containers/App';
 // import CodeSamples from './code samples/CodeSamples';
 import ClassBasedComponentLifecycle from './code samples/ClassBasedComponentLifecycle';
 // import Assignment1App from './assignments/Assignment1 - Base Syntax/AppAssignment1.js';
@@ -10,8 +10,8 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ClassBasedComponentLifecycle/>
-    {/* <App appTitle='React Guide' /> */}
+    <App appTitle='React Guide' />
+    {/* <ClassBasedComponentLifecycle/> */}
     {/* <CodeSamples />
     <Assignment2App />
     <Assignment1App /> */}

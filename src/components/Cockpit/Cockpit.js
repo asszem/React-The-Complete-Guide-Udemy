@@ -11,13 +11,29 @@ const Cockpit = (props) => {
     // setTimeout(() => {
     //   alert('Saved data to the cloud!');
     // }, 1000);
+
   }, [props.persons]); //only execute when state.persons changed!
 
   //can be used multiple times
   useEffect(() => {
     console.log('[Cockpit.js] useEffect2 - showPersons changed');
     // Http request can be run from here
+
+    return () => {
+        // this will run after the render cycle
+        console.log('[Cockpit.js] cleanup work in useEffect 2 - after showNames changed');
+    }
   }, [props.stateShowNames]); //only execute when state.showPersons changed!
+
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect 3 - only when first renders and when destroyed');
+    // Http request can be run from here
+
+    return () => {
+        // this will run after the render cycle
+        console.log('[Cockpit.js] cleanup work in useEffect 3');
+    }
+  }, []); //empty array only executes when comp rendered or destroyed
 
   const assignedClasses = [];
   let btnClass = '';
