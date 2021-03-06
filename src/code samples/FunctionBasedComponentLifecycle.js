@@ -25,4 +25,4 @@ const FunctionBasedComponentLifecycle = (props) => {
   );
 };
 
-export default FunctionBasedComponentLifecycle;
+export default React.memo(FunctionBasedComponentLifecycle);

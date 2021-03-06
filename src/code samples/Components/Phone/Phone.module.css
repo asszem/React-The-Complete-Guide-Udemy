@@ -1,0 +1,48 @@
+.Phone {
+  background-color: darkcyan;
+  border: 5px solid darkcyan;
+  width: 50%;
+  margin:10px auto;
+  padding:10px;
+}
+
+.Phone .Wrapper {
+  background-color: darkslategray;
+  color: white;
+  margin: 10px auto;
+  padding: 5px;
+  border: 5px solid darkgrey;
+  box-shadow: 0 2px 3px black; 
+  cursor: pointer;
+}
+
+.Phone .Wrapper .Selected {
+  background-color: brown;
+  color:black;
+  font-weight: bold;
+}
+
+.Phone .Controls{
+  background-color: green;
+  cursor: default;
+}
+
+.Phone .Controls input {
+  background-color: white;
+  width: 80%;
+  color: black;
+}
+.Phone .Controls input .Selected{
+  background-color: red;
+  font-weight: bold;
+}
+
+.Phone .Controls button {
+  margin: 10px auto;
+  background-color: white;
+}
+
+.Phone .Controls button.Selected {
+  margin: 10px auto;
+  background-color: red;
+}

@@ -8,11 +8,7 @@ const Cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect1 - persons changed');
     // Http request can be run from here
-    // setTimeout(() => {
-    //   alert('Saved data to the cloud!');
-    // }, 1000);
-
-  }, [props.persons]); //only execute when state.persons changed!
+  }, [props.personsLength]); //only execute when state.persons changed!
 
   //can be used multiple times
   useEffect(() => {
@@ -20,19 +16,28 @@ const Cockpit = (props) => {
     // Http request can be run from here
 
     return () => {
-        // this will run after the render cycle
-        console.log('[Cockpit.js] cleanup work in useEffect 2 - after showNames changed');
-    }
+      // this will run after the render cycle
+      console.log(
+        '[Cockpit.js] cleanup work in useEffect 2 - after showNames changed'
+      );
+    };
   }, [props.stateShowNames]); //only execute when state.showPersons changed!
 
   useEffect(() => {
-    console.log('[Cockpit.js] useEffect 3 - only when first renders and when destroyed');
+    console.log(
+      '[Cockpit.js] useEffect 3 - only when first renders and when destroyed'
+    );
     // Http request can be run from here
+    // store the function in a variable
+//    const timer = setTimeout(() => {
+//       alert('Timeout after 1 sec executed');
+//     }, 1000);
 
     return () => {
-        // this will run after the render cycle
-        console.log('[Cockpit.js] cleanup work in useEffect 3');
-    }
+      // this will run after the render cycle
+    // clearTimeout(timer);
+      console.log('[Cockpit.js] cleanup work in useEffect 3');
+    };
   }, []); //empty array only executes when comp rendered or destroyed
 
   const assignedClasses = [];
@@ -40,18 +45,19 @@ const Cockpit = (props) => {
   if (props.stateShowNames) {
     btnClass = classes.Red;
   }
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     assignedClasses.push(classes.Red);
   }
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     assignedClasses.push(classes.Bold);
   }
 
   return (
     <div className={classes.Cockpit}>
       <h1>{props.appTitle}</h1>
-      <p className={classes.testClass}>.testClass red </p>
-      <p className={classes.testClass2}>.testClass2 blue</p>
+      <p></p>
+      {/* <p className={classes.testClass}>.testClass red </p>
+      <p className={classes.testClass2}>.testClass2 blue</p> */}
       <button
         className={assignedClasses.join(' ')}
         onClick={() => props.changeNames(rando())}
@@ -66,4 +72,4 @@ const Cockpit = (props) => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit); // only render this functional component if it props has changed

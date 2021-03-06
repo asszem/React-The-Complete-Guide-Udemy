@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import './CodeSamples.css';
-import ListPhones from './Components/FunctionBasedComponent'; // import the default export
+import ClassBasedComponentLifecycle from '../ClassBasedComponentLifecycle';
+import Phones from '../components/Phones'; // import the default export
 // import ClassBasedComponent as ListOwners './Components/ClassBasedComponent'; // import exported class as a different name
 
 class CodeSamples extends Component {
-  state = {
-    phones: [
-      { id: 1, type: 'OnePlus', color: 'red', isSelected: false },
-      { id: 2, type: 'Samsung', color: 'black', isSelected: true },
-      { id: 3, type: 'iPhone', color: 'white', isSelected: false },
-    ],
-    showPhones: true,
-    owners: [
-      { id: 1, name: 'András' },
-      { id: 2, name: 'Barni' },
-      { id: 3, name: 'Anikó' },
-    ],
-    showOwners: false,
-    version: { main: 1, sub: 1 },
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      phones: [
+        { id: 1, type: 'OnePlus', color: 'red', isSelected: false },
+        { id: 2, type: 'Samsung', color: 'black', isSelected: true },
+        { id: 3, type: 'iPhone', color: 'white', isSelected: false },
+      ],
+      showPhones: true,
+      owners: [
+        { id: 1, name: 'András' },
+        { id: 2, name: 'Barni' },
+        { id: 3, name: 'Anikó' },
+      ],
+      showOwners: false,
+      version: { main: 1, sub: 1 },
+    };
+    console.log('Inside constructor()');
+  }
 
   phoneClickHandler = (index) => {
     const newPhone = { ...this.state.phones[index] };
@@ -34,7 +40,7 @@ class CodeSamples extends Component {
     this.setState({ phones: newStateOfPhones }); // update the state
   };
 
-  changeTypeHandler = (event, id) => {
+  inputTypeHandler = (event, id) => {
     const indexOfPhoneToBeChanged = this.state.phones.findIndex((phone) => {
       return phone.id === id;
     }); // get the array index of the item for id
@@ -46,36 +52,16 @@ class CodeSamples extends Component {
   };
 
   render() {
-    let phones = (
-      <div>
-        {this.state.phones.map((phone, index) => {
-          const phoneClass = ['Phones'];
-          if (phone.isSelected) {
-            phoneClass.push('PhoneSelected');
-          }
-          return (
-            <ListPhones
-              key={phone.id}
-              onClick={() => this.phoneClickHandler(index)}
-              onDelete={this.deletePhoneHandler.bind(this, index)}
-              onInput={(event) => {
-                this.changeTypeHandler(event, phone.id);
-              }}
-              type={phone.type}
-              color={phone.color}
-              stylePhones={phoneClass.join(' ')}
-              stylePhone="Phone"
-            >
-              Index: {index}
-            </ListPhones>
-          );
-        })}
-      </div>
-    );
     return (
       <div className="CodeSamples">
         <h1>Code Samples</h1>
-        {phones}
+        {/* <ClassBasedComponentLifecycle /> */}
+        <Phones
+        onClick={this.phoneClickHandler}
+        onDelete={this.deletePhoneHandler}
+        onInput={this.inputTypeHandler}
+        phones={this.state.phones}
+        />
       </div>
     );
   }

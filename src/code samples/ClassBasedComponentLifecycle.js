@@ -23,7 +23,7 @@ class ClassBasedComponentLifecycle extends Component {
       toggleState: true,
       message: 'Hello',
     };
-    console.log('Inside constructor');
+    console.log('Inside constructor()');
   }
   // Lifecycle hooks
 
@@ -76,6 +76,7 @@ class ClassBasedComponentLifecycle extends Component {
   }
 
   render() {
+    console.log('Inside render()');
     return (
       <div>
         <h1>{this.state.message}</h1>
