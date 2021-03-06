@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './CodeSamples.css';
-import ClassBasedComponentLifecycle from '../ClassBasedComponentLifecycle';
-import Phones from '../components/Phones'; // import the default export
+import ClassBasedComponentLifecycle from '../Components/LifeCycles/ClassBasedComponentLifecycle';
+import Phones from '../Components/Phones/Phones'; // import the default export
 // import ClassBasedComponent as ListOwners './Components/ClassBasedComponent'; // import exported class as a different name
 
 class CodeSamples extends Component {
   constructor(props) {
     super(props);
 
+    // Todo: move this state to somewhere else
     this.state = {
       phones: [
         { id: 1, type: 'OnePlus', color: 'red', isSelected: false },
