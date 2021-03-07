@@ -5,6 +5,7 @@ import './App.css';
 
 import Persons from '../components/Persons/Persons'; // this is using the default export from Persons.js
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 // importing a specific class needs to be inside {} brackets
 // import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
 
@@ -24,6 +25,7 @@ class App extends Component {
         { id: 3, name: 'Constructor Person3 ', age: 33 },
         { id: 4, name: 'Constructor Person4 ', age: 44 },
       ],
+      changeCounter: 0,
     };
   }
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
@@ -97,7 +99,14 @@ class App extends Component {
 
     const updatedPersons = [...this.state.persons]; // create a copy of the state array
     updatedPersons[personIndex] = personToUpdate; // update the person in the new array based on the updatedPerson object
-    this.setState({ persons: updatedPersons }); // execute the state update
+
+    // updating the state correctly when referencing previous state
+    this.setState((prevState, props) => {
+      return {
+        persons: updatedPersons,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
   };
 
   toggleShowNamesHandler = () => {
@@ -135,7 +144,7 @@ class App extends Component {
 
     return (
       // this is JSX code that will be compiled automatically when added to the DOM
-      <div className="App">
+      <WithClass classes="App">
         <button
           onClick={() => {
             this.setState({ showCockpit: !this.state.showCockpit });
@@ -153,7 +162,7 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </div>
+      </WithClass>
     );
   } //end of render()
 } //end of App class
@@ -162,9 +171,4 @@ export function rando() {
   return Math.floor(Math.random() * 30);
 }
 
-// default export is if the file is imported, this class will be exported
-// index.js does import this file, class:  import App from './App';
-
 export default App;
-// export default Radium(App);
-// Radium uses a "higher order component"
