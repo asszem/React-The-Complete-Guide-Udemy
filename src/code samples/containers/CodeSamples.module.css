@@ -1,0 +1,31 @@
+.CodeSamples {
+  color:white;
+  text-align: center;
+  background-color: grey;
+  margin-bottom: 10px;
+  padding: 1px;
+  border: 5px solid black;
+}
+
+.CodeSamples .ControlPanel {
+  background-color: darkgray;
+  margin: 10px;
+  padding: 10px;
+}
+
+.CodeSamples .Components {
+  background-color: grey;
+}
+
+.CodeSamples .Component {
+  border: 5px solid black;
+  margin:10px auto;
+  padding: 0px 0px 010px;
+}
+
+.CodeSamples h3{
+  background-color: black;
+  color:grey;
+  margin: 0px 0px 10px;
+  padding: 5px;
+}
