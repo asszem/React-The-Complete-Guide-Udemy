@@ -13,6 +13,9 @@
 .Cockpit button.Red {
   background-color: red;
 }
+.Cockpit button.Blue {
+  background-color: blue;
+}
 
 .Cockpit button.Red:hover {
   background-color: salmon;

@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { rando } from '../../containers/App';
 import classes from './Cockpit.module.css';
 
 // Component name must start with Capital
 const Cockpit = (props) => {
-  //useEffect is a React Hook that can be added to a functional component, can be added anywhere
+  const elementReference = useRef(null);
+
+  //useEffect is a React Hook that can be added to a functional component, can be added anywhere, it runs AFTER render
   useEffect(() => {
-    console.log('[Cockpit.js] useEffect1 - persons changed');
+    console.log('[Cockpit.js] useEffect1 - persons LENGTH changed');
+    elementReference.current.className=classes.Blue;
     // Http request can be run from here
   }, [props.personsLength]); //only execute when state.persons changed!
 
@@ -29,13 +32,14 @@ const Cockpit = (props) => {
     );
     // Http request can be run from here
     // store the function in a variable
-//    const timer = setTimeout(() => {
-//       alert('Timeout after 1 sec executed');
-//     }, 1000);
+    //    const timer = setTimeout(() => {
+    //       alert('Timeout after 1 sec executed');
+    //     }, 1000);
 
+    elementReference.current.click();
     return () => {
       // this will run after the render cycle
-    // clearTimeout(timer);
+      // clearTimeout(timer);
       console.log('[Cockpit.js] cleanup work in useEffect 3');
     };
   }, []); //empty array only executes when comp rendered or destroyed
@@ -65,7 +69,11 @@ const Cockpit = (props) => {
         Change Every Name
       </button>
 
-      <button className={btnClass} onClick={props.showNames}>
+      <button
+        ref={elementReference}
+        className={btnClass}
+        onClick={props.showNames}
+      >
         Toggle Name Display
       </button>
     </div>
