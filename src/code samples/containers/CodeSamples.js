@@ -16,6 +16,7 @@ class CodeSamples extends Component {
         { showLifecycle: false },
         { showAssignment: false },
       ],
+      stateChangeCounter: 0,
     };
     console.log('Inside constructor()');
   }
@@ -25,7 +26,12 @@ class CodeSamples extends Component {
     newState[propertyIndex][propertyName] = !this.state.openCloseStatus[
       propertyIndex
     ][propertyName];
-    this.setState({ openCloseStatus: newState });
+    this.setState((prevState, props) => {
+      return {
+        openCloseStatus: newState,
+        stateChangeCounter: prevState.stateChangeCounter+1,
+      };
+    });
   };
 
   prepareGuide() {
@@ -74,6 +80,7 @@ class CodeSamples extends Component {
         <h1>Control Panel</h1>
         <div className={classes.ControlPanel}>
           <ControlPanel onClick={this.toggleComponents} />
+          <p>State changes: {this.state.stateChangeCounter}</p>
         </div>
         <div className={classes.Components}>
           {guide}
