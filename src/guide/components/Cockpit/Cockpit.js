@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { rando } from '../../containers/App';
 import classes from './Cockpit.module.css';
+import AuthContext from '../../context/auth-context';
 
 // Component name must start with Capital
 const Cockpit = (props) => {
@@ -74,7 +75,11 @@ const Cockpit = (props) => {
         Toggle Name Display
       </button>
 
-      <button onClick={props.authHandler}>Authenticate</button>
+      <AuthContext.Consumer>
+        {(context) => {
+          return <button onClick={context.login}>Authenticate</button>;
+        }}
+      </AuthContext.Consumer>
     </div>
   );
 };

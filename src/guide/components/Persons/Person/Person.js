@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.module.css';
 import withWrappedComp from '../../../hoc/withWrappedComp';
 import Auxilary from '../../../hoc/Auxilary';
+import AuthContext from '../../../context/auth-context';
 
 //Functional components (also referred to as "presentational", "dumb" or "stateless" components
 
@@ -25,10 +26,10 @@ const person = (props) => {
 
 //Each component needs to return/ render some JSX code - it defines which HTML code React should render to the real DOM in the end.
 class PersonClassBasedComponent extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     // to create a reference to a ref= element
-    this.inputElementRef=React.createRef();
+    this.inputElementRef = React.createRef();
   }
   //this runs after render() completed, so it will have access to the ref variable
   componentDidMount() {
@@ -40,8 +41,18 @@ class PersonClassBasedComponent extends Component {
     console.log('[Person.js] rendering...', this.props.name);
     return (
       <Auxilary>
-        <p>{this.props.isAuthenticated? 'Authenticated' : 'Please log in!'}</p>
-        <p ref={(pElem) => {this.pElement=pElem}}>
+        <AuthContext.Consumer>
+          {(context) => (
+            <p>
+              {context.isAuthenticated ? 'Authenticated' : 'Please log in!'}
+            </p>
+          )}
+        </AuthContext.Consumer>
+        <p
+          ref={(pElem) => {
+            this.pElement = pElem;
+          }}
+        >
           Name={this.props.name}, age={this.props.age}
         </p>
         <input

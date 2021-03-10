@@ -121,7 +121,6 @@ class App extends Component {
             persons={this.state.persons} //to pass the state
             onDelete={this.deletePersonHandler} //the parameters will be assigned in the Persons component
             onChange={this.changePersonNameHandler} // because persons array will be used in that component
-            isAuthenticated={this.state.isAuthenticated}
           />
         </div>
       );
@@ -150,7 +149,6 @@ class App extends Component {
               stateShowNames={this.state.showPersons}
               showNames={this.toggleShowNamesHandler}
               changeNames={this.changeEveryNameHandler}
-              authHandler={this.authHandler}
             />
           ) : null}
           {persons}
