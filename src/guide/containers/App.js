@@ -22,6 +22,7 @@ class App extends Component {
         { id: 4, name: 'Constructor Person4 ', age: 44 },
       ],
       changeCounter: 0,
+      isAuthenticated:false,
     };
   }
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods

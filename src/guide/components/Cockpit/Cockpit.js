@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { rando } from '../../containers/App';
 import classes from './Cockpit.module.css';
 import AuthContext from '../../context/auth-context';
@@ -6,7 +6,9 @@ import AuthContext from '../../context/auth-context';
 // Component name must start with Capital
 const Cockpit = (props) => {
   const elementReference = useRef(null);
+  const authContext = useContext(AuthContext);
 
+  console.log('is Authenticated: ', authContext.isAuthenticated);
   //useEffect is a React Hook that can be added to a functional component, can be added anywhere, it runs AFTER render
   useEffect(() => {
     console.log('[Cockpit.js] useEffect1 - persons LENGTH changed');
@@ -66,7 +68,6 @@ const Cockpit = (props) => {
       >
         Change Every Name
       </button>
-
       <button
         ref={elementReference}
         className={btnClass}
@@ -74,12 +75,12 @@ const Cockpit = (props) => {
       >
         Toggle Name Display
       </button>
-
-      <AuthContext.Consumer>
+      {/* <AuthContext.Consumer>
         {(context) => {
           return <button onClick={context.login}>Authenticate</button>;
         }}
-      </AuthContext.Consumer>
+      </AuthContext.Consumer> */}
+      <button onClick={authContext.login}>Authenticate</button>;
     </div>
   );
 };

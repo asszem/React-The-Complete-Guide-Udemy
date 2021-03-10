@@ -31,23 +31,32 @@ class PersonClassBasedComponent extends Component {
     // to create a reference to a ref= element
     this.inputElementRef = React.createRef();
   }
+
+
+  // this must be static and must be named 'contextType'
+  // this is created by React and with this, context can be referenced out of the render() method
+  static contextType=AuthContext;
+
   //this runs after render() completed, so it will have access to the ref variable
   componentDidMount() {
     this.pElement.focus();
     // .current needs to be used when ref was created with createRef()
     this.inputElementRef.current.focus();
+    console.log('context.isAuthenticated = ' + this.context.isAuthenticated);
   }
   render() {
     console.log('[Person.js] rendering...', this.props.name);
     return (
       <Auxilary>
-        <AuthContext.Consumer>
+        {this.context.isAuthenticated? 'Authenticated' : 'Please log in!' 
+        }
+        {/* <AuthContext.Consumer>
           {(context) => (
             <p>
               {context.isAuthenticated ? 'Authenticated' : 'Please log in!'}
             </p>
           )}
-        </AuthContext.Consumer>
+        </AuthContext.Consumer> */}
         <p
           ref={(pElem) => {
             this.pElement = pElem;
