@@ -9,7 +9,7 @@ const Cockpit = (props) => {
   //useEffect is a React Hook that can be added to a functional component, can be added anywhere, it runs AFTER render
   useEffect(() => {
     console.log('[Cockpit.js] useEffect1 - persons LENGTH changed');
-    elementReference.current.className=classes.Blue;
+    elementReference.current.className = classes.Blue;
     // Http request can be run from here
   }, [props.personsLength]); //only execute when state.persons changed!
 
@@ -59,9 +59,6 @@ const Cockpit = (props) => {
   return (
     <div className={classes.Cockpit}>
       <h1>{props.appTitle}</h1>
-      <p></p>
-      {/* <p className={classes.testClass}>.testClass red </p>
-      <p className={classes.testClass2}>.testClass2 blue</p> */}
       <button
         className={assignedClasses.join(' ')}
         onClick={() => props.changeNames(rando())}
@@ -76,6 +73,8 @@ const Cockpit = (props) => {
       >
         Toggle Name Display
       </button>
+
+      <button onClick={props.authHandler}>Authenticate</button>
     </div>
   );
 };

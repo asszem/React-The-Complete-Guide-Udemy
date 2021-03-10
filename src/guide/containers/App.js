@@ -1,15 +1,11 @@
-import React, { Component } from 'react'; // Import the default export from React and then import a named export called Component
-// extension is required from any non .js file
+import React, { Component } from 'react';
 import './App.css';
 // import Radium from 'radium';
-
-import Persons from '../components/Persons/Persons'; // this is using the default export from Persons.js
+import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import WithClass from '../hoc/WithClass';
-// importing a specific class needs to be inside {} brackets
-// import person, { PersonClassBasedComponent as Pacbc } from './Person/Person.js';
+import AuthContext from '../context/auth-context';
 
-// "App" is the root component, that can have infinite nested child components
 class App extends Component {
   // if no constructor is defined, state = {}... will create one that calls super(props)
   constructor(props) {
@@ -31,34 +27,20 @@ class App extends Component {
   //state is a reserved word in class that extends Component and can be used for setState() or useState() methods
   // if state is initialized in constructor, this will not have an effect, because no setState() was called
   state = {
-    showPersons: true,
-    persons: [
-      { id: 1, name: 'Person1 ', age: 11 },
-      { id: 2, name: 'Person2 ', age: 22 },
-      { id: 3, name: 'Person3 ', age: 33 },
-      { id: 4, name: 'Person4 ', age: 44 },
-    ],
+    noEffect: true,
   };
 
   // Lifecycle hooks
 
-  //DO: sync state
-  //DON'T: cause side effects
-  // this needs to be static, see Component Lifecycle
   static getDerivedStateFromProps(props, state) {
     console.log('[App.js] getDerivedStateFromProps', props);
     return state;
   }
 
-  //DO: cause side effects, like HTTP calls
-  //DON'T: Update state, it triggers re-render
-  // This is called after render()
   componentDidMount() {
     console.log('[App.js] componentDidMount');
   }
 
-  //Must return something, or it wont allow the update
-  //True is default if this method is not called
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[App.js] should component update nextProps =', nextProps);
     console.log('[App.js] should component update nextState =', nextState);
@@ -87,7 +69,6 @@ class App extends Component {
     });
   };
 
-  // Change only a specific name based on an index
   // event is a reserved word to pass event info
   changePersonNameHandler = (event, id) => {
     // get the index of the person where the button was pressed
@@ -126,9 +107,12 @@ class App extends Component {
     this.setState({ persons: newStateWithPersonDeleted });
   };
 
+  authHandler = () => {
+    this.setState({ isAuthenticated: true });
+  };
+
   render() {
     console.log('[App.js] render');
-    // set conditionally the value of persons based on state.showPersons
     let persons = null;
     if (this.state.showPersons) {
       persons = ( //this is JSX content inside ()
@@ -137,6 +121,7 @@ class App extends Component {
             persons={this.state.persons} //to pass the state
             onDelete={this.deletePersonHandler} //the parameters will be assigned in the Persons component
             onChange={this.changePersonNameHandler} // because persons array will be used in that component
+            isAuthenticated={this.state.isAuthenticated}
           />
         </div>
       );
@@ -152,16 +137,24 @@ class App extends Component {
         >
           Toggle Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit
-            appTitle={this.props.appTitle}
-            personsLength={this.state.persons.length}
-            stateShowNames={this.state.showPersons}
-            showNames={this.toggleShowNamesHandler}
-            changeNames={this.changeEveryNameHandler}
-          />
-        ) : null}
-        {persons}
+        <AuthContext.Provider
+          value={{
+            isAuthenticated: this.state.isAuthenticated,
+            login: this.authHandler,
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              appTitle={this.props.appTitle}
+              personsLength={this.state.persons.length}
+              stateShowNames={this.state.showPersons}
+              showNames={this.toggleShowNamesHandler}
+              changeNames={this.changeEveryNameHandler}
+              authHandler={this.authHandler}
+            />
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </WithClass>
     );
   } //end of render()

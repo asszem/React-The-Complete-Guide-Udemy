@@ -40,6 +40,7 @@ class PersonClassBasedComponent extends Component {
     console.log('[Person.js] rendering...', this.props.name);
     return (
       <Auxilary>
+        <p>{this.props.isAuthenticated? 'Authenticated' : 'Please log in!'}</p>
         <p ref={(pElem) => {this.pElement=pElem}}>
           Name={this.props.name}, age={this.props.age}
         </p>
