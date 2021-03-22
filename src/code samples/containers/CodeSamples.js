@@ -4,6 +4,7 @@ import ControlPanel from '../Components/CodeSamples/ControlPanel';
 import Guide from '../../guide/containers/App';
 import PhoneApp from '../Components/Phones/PhoneApp';
 import LifeCycles from '../Components/LifeCycles/ClassBasedComponentLifecycle';
+import BasicBurgerBuilder from '../../basicBurger/components/BasicBurgerApp';
 
 class CodeSamples extends Component {
   constructor(props) {
@@ -11,10 +12,11 @@ class CodeSamples extends Component {
 
     this.state = {
       openCloseStatus: [
-        { showGuide: true },
+        { showGuide: false },
         { showPhoneApp: false },
         { showLifecycle: false },
         { showAssignment: false },
+        { showBasicBurger: true },
       ],
       stateChangeCounter: 0,
     };
@@ -29,7 +31,7 @@ class CodeSamples extends Component {
     this.setState((prevState, props) => {
       return {
         openCloseStatus: newState,
-        stateChangeCounter: prevState.stateChangeCounter+1,
+        stateChangeCounter: prevState.stateChangeCounter + 1,
       };
     });
   };
@@ -70,22 +72,35 @@ class CodeSamples extends Component {
     }
     return lifecycles;
   }
+  prepareBasicBurger() {
+    let basicBurger = null;
+    if (this.state.openCloseStatus[4].showBasicBurger === true) {
+      basicBurger = (
+        <div className={classes.Component}>
+          <h3>Basic Burger Builder</h3>
+          <BasicBurgerBuilder />
+        </div>
+      );
+    }
+    return basicBurger;
+  }
 
   render() {
     let guide = this.prepareGuide();
     let phoneApp = this.preparePhoneApp();
     let lifecycles = this.prepareLifecycles();
+    let basicBurger = this.prepareBasicBurger();
     return (
       <div className={classes.CodeSamples}>
-        <h1>Control Panel</h1>
+        <p>Control Panel state changes: {this.state.stateChangeCounter}</p>
         <div className={classes.ControlPanel}>
           <ControlPanel onClick={this.toggleComponents} />
-          <p>State changes: {this.state.stateChangeCounter}</p>
         </div>
         <div className={classes.Components}>
           {guide}
           {phoneApp}
           {lifecycles}
+          {basicBurger}
         </div>
       </div>
     );
