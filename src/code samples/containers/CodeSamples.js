@@ -20,7 +20,6 @@ class CodeSamples extends Component {
       ],
       stateChangeCounter: 0,
     };
-    console.log('Inside constructor()');
   }
 
   toggleComponents = (propertyIndex, propertyName) => {
