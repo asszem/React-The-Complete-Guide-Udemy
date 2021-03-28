@@ -80,7 +80,7 @@ const Cockpit = (props) => {
           return <button onClick={context.login}>Authenticate</button>;
         }}
       </AuthContext.Consumer> */}
-      <button onClick={authContext.login}>Authenticate</button>;
+      <button onClick={authContext.login}>Authenticate</button>
     </div>
   );
 };

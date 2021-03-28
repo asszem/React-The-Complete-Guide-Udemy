@@ -1,16 +1,15 @@
 .CodeSamples {
-  color:white;
+  color: white;
   text-align: center;
   background-color: grey;
-  margin-bottom: 10px;
-  padding: 1px;
   border: 5px solid black;
+  padding: 0;
+  margin: 0;
 }
 
 .CodeSamples .ControlPanel {
   background-color: darkgray;
-  margin: 10px;
-  padding: 10px;
+  padding-bottom: 5px;
 }
 
 .CodeSamples .Components {
@@ -19,13 +18,11 @@
 
 .CodeSamples .Component {
   border: 5px solid black;
-  margin:10px auto;
-  padding: 0px 0px 010px;
 }
 
-.CodeSamples h3{
+.CodeSamples h3 {
   background-color: black;
-  color:grey;
-  margin: 0px 0px 10px;
+  color: grey;
+  margin: 0;
   padding: 5px;
 }

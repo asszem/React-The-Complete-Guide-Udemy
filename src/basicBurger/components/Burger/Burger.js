@@ -30,7 +30,6 @@ const burger = (props) => {
         .reduce((endResultArray, elements) => {
             return endResultArray.concat(elements);
         });
-    console.log(transformedIngredients);
     if (transformedIngredients.length === 0) {
         transformedIngredients = <p>Please add some ingredients!</p>
     }

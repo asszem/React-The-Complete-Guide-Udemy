@@ -91,7 +91,10 @@ class CodeSamples extends Component {
     let basicBurger = this.prepareBasicBurger();
     return (
       <div className={classes.CodeSamples}>
-        <p>Control Panel state changes: {this.state.stateChangeCounter}</p>
+          <h3>
+            Control Panel (state changes: {this.state.stateChangeCounter}
+            )
+          </h3>
         <div className={classes.ControlPanel}>
           <ControlPanel onClick={this.toggleComponents} />
         </div>

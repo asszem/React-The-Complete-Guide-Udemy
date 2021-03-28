@@ -8,7 +8,9 @@ const buildControl = (props) => (
         <button
             className={classes.Less}
             onClick={() => props.ingredientsRemoved(props.type)}
-            disabled={props.ingredientAmount <= 0}
+            // my solution for handling disabled 
+            // disabled={props.ingredientAmount <= 0}
+            disabled = {props.disabledStatus}
         >Less</button>
         <button
             className={classes.More}
