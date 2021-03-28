@@ -20,6 +20,7 @@ const buildControls = (props) => (
                 type={ctrl.type}
                 ingredientsAdded={props.ingredientsAdded}
                 ingredientsRemoved={props.ingredientsRemoved}
+                ingredientAmount={props.ingredients[ctrl.type]}
             />))}
     </div>
 );
