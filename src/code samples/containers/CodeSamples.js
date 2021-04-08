@@ -40,7 +40,7 @@ class CodeSamples extends Component {
     if (this.state.openCloseStatus[0].showGuide === true) {
       guide = (
         <div className={classes.Component}>
-          <h3>React Guide</h3>
+          <h3 className={classes.CodeSamplesH3}>React Guide</h3>
           <Guide appTitle="React Guide App" />
         </div>
       );
@@ -52,7 +52,7 @@ class CodeSamples extends Component {
     if (this.state.openCloseStatus[1].showPhoneApp === true) {
       phoneApp = (
         <div className={classes.Component}>
-          <h3>Phone App</h3>
+          <h3 className={classes.CodeSamplesH3}>Phone App</h3>
           <PhoneApp />
         </div>
       );
@@ -64,7 +64,7 @@ class CodeSamples extends Component {
     if (this.state.openCloseStatus[2].showLifecycle === true) {
       lifecycles = (
         <div className={classes.Component}>
-          <h3>LifeCycles</h3>
+          <h3 className={classes.CodeSamplesH3}>LifeCycles</h3>
           <LifeCycles />
         </div>
       );
@@ -76,7 +76,7 @@ class CodeSamples extends Component {
     if (this.state.openCloseStatus[4].showBasicBurger === true) {
       basicBurger = (
         <div className={classes.Component}>
-          <h3>Basic Burger Builder</h3>
+          <h3 className={classes.CodeSamplesH3}>Basic Burger Builder</h3>
           <BasicBurgerBuilder />
         </div>
       );
@@ -91,7 +91,7 @@ class CodeSamples extends Component {
     let basicBurger = this.prepareBasicBurger();
     return (
       <div className={classes.CodeSamples}>
-          <h3>
+          <h3 className={classes.CodeSamplesH3}>
             Control Panel (state changes: {this.state.stateChangeCounter}
             )
           </h3>
