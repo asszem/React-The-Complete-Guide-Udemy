@@ -87,6 +87,9 @@ class BurgerBuilder extends Component {
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false });
     }
+    purchaseContinueHandler = () =>{
+        console.log('Continue to purchase. Not yet implemented');
+    }
 
     render() {
         // Setup less button disabled based on ingredient amount
@@ -100,11 +103,16 @@ class BurgerBuilder extends Component {
         }
         return (
             <Aux>
-                <Modal 
-                showModal={this.state.purchasing}
-                backdropClickHandler={this.purchaseCancelHandler}
+                <Modal
+                    showModal={this.state.purchasing}
+                    backdropClickHandler={this.purchaseCancelHandler}
                 >
-                    <OrderSummary ingredients={this.state.ingredients}></OrderSummary>
+                <OrderSummary 
+                    ingredients={this.state.ingredients}
+                    cancelClickHandler={this.purchaseCancelHandler}
+                    continueClickHandler={this.purchaseContinueHandler}
+                    totalPrice={this.state.totalPrice}
+                    />
                 </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
