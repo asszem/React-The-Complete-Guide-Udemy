@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CodeSamples from './code samples/containers/CodeSamples';
+import CodeSamplesApp from './code samples/Components/CodeSamplesApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CodeSamples />
+    <CodeSamplesApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
