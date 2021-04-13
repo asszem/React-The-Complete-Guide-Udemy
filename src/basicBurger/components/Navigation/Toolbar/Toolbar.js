@@ -12,5 +12,4 @@ const toolbar = (props) =>(
     </header>
 );
 
-
 export default toolbar;

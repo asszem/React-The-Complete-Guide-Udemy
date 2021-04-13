@@ -1,0 +1,27 @@
+.Toolbar {
+    height:56px;
+    width:100%;
+    /* if fixed, it will be displayed on top, overwriting the CodeSampels nav header of mine*/
+    position: absolute;
+    top:0; 
+    left:0;
+    background-color: #703b09;
+    /* default flex arrangement is in row, all item aligned next to each other*/
+    display: flex;
+    /* flex-flow: row; */
+    /* defines how the elements should be spread out, available space is filled inside the toolbar element */
+    justify-content: space-between;
+    /* how align vertically */
+    align-items: center;
+    /* Padding: zero from top and bottom, 20px from left andright */
+    padding:0 20px;
+    /* to make sure that it is set correctly with padding */
+    box-sizing: border-box;
+    /* should be lower than the backdrop */
+    z-index: 90;
+}
+
+.Toolbar nav {
+    /* make sure the navigation items spend the full height of the toolbar */
+    height: 100%;
+}

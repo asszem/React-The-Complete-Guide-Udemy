@@ -1,6 +1,6 @@
 import React from 'react';
 import Aux from '../hoc/Auxillary';
-import Layout from '../Components/Layout/Layout';
+import Layout from '../components/Layout/Layout';
 import CodeSamples from '../containers/CodeSamples';
 
 const codeSamplesApp = (props) => (

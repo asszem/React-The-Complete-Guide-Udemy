@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import classes from './CodeSamples.module.css';
-import ControlPanel from '../Components/CodeSamples/ControlPanel';
+import ControlPanel from '../components/CodeSamples/ControlPanel';
 import Guide from '../../guide/containers/App';
-import PhoneApp from '../Components/Phones/PhoneApp';
-import LifeCycles from '../Components/LifeCycles/ClassBasedComponentLifecycle';
+import PhoneApp from '../components/Phones/PhoneApp';
+import LifeCycles from '../components/LifeCycles/ClassBasedComponentLifecycle';
 import BasicBurgerBuilder from '../../basicBurger/components/BasicBurgerApp';
 
 class CodeSamples extends Component {

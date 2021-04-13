@@ -27,9 +27,18 @@
     }
 }
 
+/* Laptop 1350*940 */
+@media (min-width: 1000px) and (min-height:700px) {
+    .Burger {
+        width: 700px;
+        height: 450px;
+    }
+}
+
+
 /* Desktop */
 
-@media (min-width: 1000px) and (min-height:700px) {
+@media (min-width: 1000px) and (min-height:1000px) {
     .Burger {
         width: 700px;
         height: 500px;
