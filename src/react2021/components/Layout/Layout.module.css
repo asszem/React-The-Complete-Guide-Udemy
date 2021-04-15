@@ -1,0 +1,6 @@
+.Content{
+    /* To push content below toolbar */
+    margin-top: 30px;
+    background-color: dimgrey;
+    height: 100%;
+}

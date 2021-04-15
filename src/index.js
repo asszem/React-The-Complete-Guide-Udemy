@@ -1,13 +1,12 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import CodeSamplesApp from './code samples/components/CodeSamplesApp';
+// import CodeSamplesApp from './code samples/components/CodeSamplesApp';
 import reportWebVitals from './reportWebVitals';
+import React2021App from './react2021/containers/React2021App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CodeSamplesApp />
-  </React.StrictMode>,
+    <React2021App/ >,
   document.getElementById('root')
 );
 
