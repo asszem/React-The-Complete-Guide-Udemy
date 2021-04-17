@@ -1,13 +1,15 @@
 import UseStateArray from './UseStateArray';
 import UseStateCounter from './UseStateCounter';
-import UseStateForm from './UseStateForm';
+import UseStateForm from './UseStateForm/PasswordForm';
+import NewExpense from './UseStateForm/NewExpense';
 
 function UseStateSamples() {
     return (<div>
         <h2>Use State Samples</h2>
         <UseStateCounter />
-        <UseStateForm />
         <UseStateArray />
+        <UseStateForm/>
+        <NewExpense></NewExpense>
     </div>);
 }
 
