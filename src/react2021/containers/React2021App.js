@@ -3,6 +3,7 @@ import Layout from '../components/Layout/Layout';
 import UseStateSamples from '../components/UseStateSamples/UseStateSamples';
 import BasicBurgerApp from '../../basicBurger/components/BasicBurgerApp';
 import LegacyCodeSamples from '../../code samples/containers/CodeSamples';
+import Section4Assignment2App from '../../assignments/NewContent/Section4-Assignment2/Section4Assignment2App';
 
 function React2021App() {
     const [componentStates, setComponentState] = useState(
@@ -11,7 +12,7 @@ function React2021App() {
                 {
                     id: 0,
                     componentName: 'UseStateSamples',
-                    componentVisible: true,
+                    componentVisible: false,
                     component: UseStateSamples,
                 },
                 {
@@ -25,6 +26,12 @@ function React2021App() {
                     componentName: 'Legacy Code Samples',
                     componentVisible: false,
                     component: LegacyCodeSamples,
+                },
+                {
+                    id: 3,
+                    componentName: 'Section4Assignment2App',
+                    componentVisible: true,
+                    component: Section4Assignment2App,
                 },
             ]
         }
