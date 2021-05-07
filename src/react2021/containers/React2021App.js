@@ -4,6 +4,7 @@ import UseStateSamples from '../components/UseStateSamples/UseStateSamples';
 import BasicBurgerApp from '../../basicBurger/components/BasicBurgerApp';
 import LegacyCodeSamples from '../../code samples/containers/CodeSamples';
 import Section4Assignment2App from '../../assignments/NewContent/Section4-Assignment2/Section4Assignment2App';
+import Section8OwnApp from '../../assignments/NewContent/Section8/Own/containers/Section8OwnApp';
 
 function React2021App() {
     const [componentStates, setComponentState] = useState(
@@ -30,7 +31,19 @@ function React2021App() {
                 {
                     id: 3,
                     componentName: 'Section4Assignment2App',
+                    componentVisible: false,
+                    component: Section4Assignment2App,
+                },
+                {
+                    id: 4,
+                    componentName: 'Section8Own',
                     componentVisible: true,
+                    component: Section8OwnApp,
+                },
+                {
+                    id: 5,
+                    componentName: 'Section8Maxi',
+                    componentVisible: false,
                     component: Section4Assignment2App,
                 },
             ]
