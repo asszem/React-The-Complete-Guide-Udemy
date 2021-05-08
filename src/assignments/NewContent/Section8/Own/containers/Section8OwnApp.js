@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddUser from '../components/AddUser';
 import ListUsers from '../components/ListUsers';
 import Modal from '../components/Modal';
+import Backdrop from '../components/Backdrop';
 
 const Section8OwnApp = () => {
   const [users, setUsers] = useState([
@@ -57,6 +58,7 @@ const Section8OwnApp = () => {
 
   return (
     <div>
+      <Backdrop visible={modal.visible} closeBackdropHandler={closeModalHandler}></Backdrop>
       <Modal
         closeModalHandler={closeModalHandler}
         message={modal.message}
