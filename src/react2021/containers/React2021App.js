@@ -1,50 +1,51 @@
 import { useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import UseStateSamples from '../components/UseStateSamples/UseStateSamples';
+import UseEffectSamples from '../components/UseEffectSamples/UseEffectWithFetch';
 import BasicBurgerApp from '../../basicBurger/components/BasicBurgerApp';
 import LegacyCodeSamples from '../../code samples/containers/CodeSamples';
 import Section4Assignment2App from '../../assignments/NewContent/Section4-Assignment2/Section4Assignment2App';
 import Section8OwnApp from '../../assignments/NewContent/Section8/Own/containers/Section8OwnApp';
+
 
 function React2021App() {
     const [componentStates, setComponentState] = useState(
         {
             components: [
                 {
-                    id: 0,
                     componentName: 'UseStateSamples',
                     componentVisible: false,
                     component: UseStateSamples,
                 },
                 {
-                    id: 1,
                     componentName: 'Legacy Burger Builder',
                     componentVisible: false,
                     component: BasicBurgerApp,
                 },
                 {
-                    id: 2,
                     componentName: 'Legacy Code Samples',
                     componentVisible: false,
                     component: LegacyCodeSamples,
                 },
                 {
-                    id: 3,
                     componentName: 'Section4Assignment2App',
                     componentVisible: false,
                     component: Section4Assignment2App,
                 },
                 {
-                    id: 4,
                     componentName: 'Section8Own',
-                    componentVisible: true,
+                    componentVisible: false,
                     component: Section8OwnApp,
                 },
                 {
-                    id: 5,
                     componentName: 'Section8Maxi',
                     componentVisible: false,
                     component: Section4Assignment2App,
+                },
+                {
+                    componentName: 'UseEffect samples',
+                    componentVisible: true,
+                    component: UseEffectSamples,
                 },
             ]
         }
@@ -66,7 +67,7 @@ function React2021App() {
                 componentStates.components.map(
                     (currentComponent, index) => (
                         // if both true, it will be displayed. Second part is always true
-                        (currentComponent.componentVisible && <currentComponent.component />)
+                        (currentComponent.componentVisible && <currentComponent.component key={index}/>)
                     )
                 )
             }
